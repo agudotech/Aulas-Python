@@ -1,1 +1,5 @@
-#Resposta:
+print("✦ Bem-vindo(a) ao Formulário de Elegibilidade ✦ ")
+print()
+nome = str(input("Digite seu nome: "))
+idade = int(input("Digite sua idade: "))
+pergunta = input("Você tem plano de saúde? ")
