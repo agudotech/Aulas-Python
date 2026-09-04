@@ -1,2 +1,7 @@
 print("O Sistema de Desconto")
 print()
+valor_compra = float(input("Insira o valor da compra: "))
+eh_vip = int(input("Você é VIP? Digite (1) para Sim ou (0) para não:  "))
+print()
+frete_gratis = (valor_compra > 200.00) or (eh_vip == 1)
+print("Voce tem direito ao frete grátis?", frete_gratis)

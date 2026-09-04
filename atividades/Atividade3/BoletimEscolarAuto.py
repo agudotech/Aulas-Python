@@ -1,11 +1,12 @@
 nota1 = float(input("Digite a primeira nota: "))
 nota2 = float(input("Digite a segunda nota: "))
-frequencia = int(input("Digite sua frequencia: "))
+frequencia_digitada = int(input("Digite sua frequencia: "))
 media = (nota1 + nota2) / 2
-print()
-aprovado = (media >= 6.0) and (frequencia >= 75)
-print(f"Sua media foi: {media}")
-print(f"Aprovado: {aprovado}")
+porcentagem_frequencia_min = (200 * 75) / 100
 
+frequencia_do_aluno = (frequencia_digitada * 100) / 200
+
+if frequencia_do_aluno >=  75 and media >= 7.0:
+    print(f"A média do aluno foi: {media:.2f}. ""\nEle foi aprovado:", aprovado)
 
 
