@@ -14,3 +14,11 @@ def aluno(nome, primeiro, segundo, terceiro, quarto):
         print("Aluno REPROVADO!")
 
 
+nome = input("Digite o nome do aluno: ")
+n1 = float(input("Digite a primeira nota do 1º bimestre: "))
+n2 = float(input("Digite a primeira nota do 2º bimestre: "))
+n3 = float(input("Digite a primeira nota do 3º bimestre: "))
+n4 = float(input("Digite a primeira nota do 4º bimestre: "))
+
+aluno(nome, n1, n2, n3, n4)
+
