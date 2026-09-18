@@ -1,4 +1,4 @@
-print("Bem-vindo(a) ao NuRoxinho!\n")
+print("Bem-vindo(a) ao AnBank!🩶\n")
 class Banco:
 
     def __init__(self, titular, numero_conta, saldo, limite, tipo_conta):
