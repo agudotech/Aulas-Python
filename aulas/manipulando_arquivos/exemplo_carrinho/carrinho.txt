@@ -1,0 +1,5 @@
+RECIBO DO CARRINHO
+
+Produto: leite  R$5.00
+Produto: arroz  R$20.00
+Total a pagar: 25.00

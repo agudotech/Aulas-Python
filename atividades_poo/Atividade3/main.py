@@ -1,4 +1,4 @@
-from Atividade3 import mamifero, Animal
+from atividades_poo.Atividade3.Atividade3 import mamifero
 
 baleia = mamifero("Baleia", idade=10, velocidade_kmh=30)
 print("===Estado inicial da baleia===")
