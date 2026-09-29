@@ -1,26 +1,27 @@
-from atividades_lp.Atividade3.Calculadora import valor
-
-
 class Animal:
-    def __init__(self, nome, idade):
+    def __init__(self, nome, idade, nivel_fome):
         self.__nome = nome
         self.__idade = idade
-        self.__nivel_fome = 0
+        self.__nivel_fome = nivel_fome
 
     @property
     def nome(self):
         return self.__nome
+
+    @nome.setter
+    def nome(self, valor):
+        self.__nome = valor
 
     @property
     def idade(self):
         return self.__idade
 
     @idade.setter
-    def idade(self, idade):
-        if valor < 0:
-            print("Erro: idade inválida")
-        else:
+    def idade(self, valor):
+        if valor >= 0:
             self.__idade = valor
+        else:
+            print("Erro: Idade inválida")
 
     @property
     def nivel_fome(self):
@@ -36,8 +37,8 @@ class Animal:
             self.__nivel_fome = valor
 
     def alimentar(self, porcao):
-        if porcao < 0:
-            print("Erro: opção inválida")
+        if porcao <= 0:
+            print("Erro: Porção inválida")
         else:
             self.nivel_fome = self.nivel_fome - porcao
 
@@ -45,50 +46,116 @@ class Animal:
         print(f"{self.nome} faz um som genérico.")
 
     def exibir_resumo(self):
-        print(f"Nome: {self.nome} | Idade: {self.idade} | Fome: {self.nivel_fome}")
+        print(f"Nome: {self.nome}")
+        print(f"Idade: {self.idade} anos")
+        print(f"Nível de fome: {self.nivel_fome}")
 
-
-class mamifero(Animal):
-    def __init__(self, nome, idade, velocidade_kmh):
-        super().__init__(nome, idade)
+class Mamifero(Animal):
+    def __init__(self, nome, idade, nivel_fome, velocidade_kmh):
+        super().__init__(nome, idade, nivel_fome)
         self.__velocidade_kmh = velocidade_kmh
 
     @property
     def velocidade_kmh(self):
         return self.__velocidade_kmh
 
+    @velocidade_kmh.setter
+    def velocidade_kmh(self, valor):
+        self.__velocidade_kmh = valor
+
     def correr(self):
-        print(f"{self.nome} correu a {self.velocidade_kmh} kmh!")
         self.nivel_fome = self.nivel_fome + 20
+        print(f"{self.nome} correu a {self.velocidade_kmh} km/h!")
 
     def emitir_som(self):
-        print(f"{self.nome} ruge alto!")
+        print(f"{self.nome} ruge/ruge alto!")
 
     def exibir_resumo(self):
         super().exibir_resumo()
-        print(f"Velocidade: {self.velocidade_kmh} kmh.")
+        print(f"Velocidade: {self.velocidade_kmh} km/h")
 
-    class Ave(Animal):
-        def __init__(self, nome, idade, envergadura_asas):
-            super().__init__(nome, idade)
-            self.__envergadura_asas = envergadura_asas
+class Ave(Animal):
+    def __init__(self, nome, idade, nivel_fome, envergadura_asas):
+        super().__init__(nome, idade, nivel_fome)
+        self.__envergadura_asas = envergadura_asas
 
     @property
     def envergadura_asas(self):
         return self.__envergadura_asas
 
+    @envergadura_asas.setter
+    def envergadura_asas(self, valor):
+        self.__envergadura_asas = valor
+
     def voar(self):
-        if self.nivel_fome < 80:
-            print(f"{self.nome} voou com suas asas de {self.envergadura_asas}cm!")
+        if self.nivel_fome <= 80:
+            print(
+                f"{self.nome} voou com suas asas de "
+                f"{self.envergadura_asas}cm!"
+            )
+
             self.nivel_fome = self.nivel_fome + 15
+
         else:
-            print(f"Voo falhou: {self.nivel_nome} está faminto demais pra voar!")
+            print(
+                f"Voo negado: {self.nome} está faminto demais para voar!"
+            )
 
     def emitir_som(self):
-            print(f"{self.nome} canta um som muito lindo!")
+        print(f"{self.nome} canta um som melodioso!")
 
     def exibir_resumo(self):
-            super().exbir_resumo()
-            print(f"Envergadura das asas: {self.envergadura_asas} cm")
+        super().exibir_resumo()
+        print(f"Envergadura das asas: {self.envergadura_asas} cm")
 
 
+# ==================================================
+# TESTES OBRIGATÓRIOS
+# ==================================================
+
+# Instanciando os animais
+leao = Mamifero(
+    nome="Simba",
+    idade=5,
+    nivel_fome=70,
+    velocidade_kmh=80
+)
+
+gaviao = Ave(
+    nome="Sky",
+    idade=2,
+    nivel_fome=75,
+    envergadura_asas=120
+)
+
+
+# 1. Tentativa de alteração direta dos atributos privados
+leao.__nivel_fome = -999
+leao.__idade = -10
+
+
+# 2. Testando ações
+leao.correr()
+
+gaviao.voar()
+
+gaviao.voar()
+
+
+# 3. Testando alimentação
+leao.alimentar(50)
+
+leao.alimentar(-10)
+
+
+# 4. Exibição final
+print("\n--- RESUMO DO MAMÍFERO ---")
+
+leao.emitir_som()
+leao.exibir_resumo()
+
+
+print("\n--- RESUMO DA AVE ---")
+
+gaviao.emitir_som()
+gaviao.exibir_resumo()
