@@ -1,0 +1,33 @@
+[
+    {
+        "produto": "Frango",
+        "preco": 20.0,
+        "em_estoque": true
+    },
+    {
+        "produto": "Carne",
+        "preco": 45.0,
+        "em_estoque": false
+    },
+    {
+        "produto": "Carne",
+        "preco": 45.0,
+        "em_estoque": false,
+        "tipo": "Peixe"
+    },
+    {
+        "produto": "Arroz",
+        "preco": 16.0,
+        "em_estoque": true
+    },
+    {
+        "produto": "Carvao",
+        "preco": 25.0,
+        "em_estoque": true
+    },
+    {
+        "produto": "Feijão",
+        "preco": 199.99,
+        "em_estoque": true
+    }
+]

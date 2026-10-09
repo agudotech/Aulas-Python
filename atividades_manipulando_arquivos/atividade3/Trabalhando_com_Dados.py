@@ -11,23 +11,18 @@ def adicionar_aluno():
         status = 'Aprovado'
     else:
         status = 'Reprovado'
-    # ABRINDO ARQUIVO alunos.txt
-    # escrita -> 'w' ->  sobreescreve tudo no documento pela linha nova
-    # escrita -> 'a' -> adiciona uma linha novas
-    # leitura -> 'r' -> lê tudo no documento.txt como STRING
+
     with open('alunos.txt', 'w', encoding='utf-8') as arquivo:
         arquivo.write(f"{nome};{turma};{nota_1bim};{nota_2bim};{nota_3bim};{nota_4bim};"
                       f"{status}\n")
 
 def lista_nomes_alunos():
     with open('alunos.txt', 'r', encoding='utf-8') as arquivo:
-        lista_alunos = arquivo.readlines() # lê linha por linha e adiciona numa lista
-        # lista_alunos = ['João de Menezes;999;10.0;9.0;8.0;7.0;Aprovado\n']
+        lista_alunos = arquivo.readlines()
 
         for aluno in lista_alunos:
-            aluno = aluno.strip() # retira o \n do texto
-            aluno = aluno.split(';') # separa atributos em indexes por entre os ';'
-            # lista_alunos = ['João de Menezes',999,10.0,9.0,8.0,7.0,'Aprovado']
+            aluno = aluno.strip()
+            aluno = aluno.split(';')
 
             print(f'{aluno[0]}\n')
 
@@ -66,8 +61,7 @@ def maior_media():
         len_media = (len(aluno_destaque) - 1)
         print(f"A maior maior media foi o aluno {aluno_destaque[len_nome]} com a média {aluno_destaque[len_media]}")
 
-# SISTEMA
-while True: # loop infinito
+while True:
     opcao = int(input("Escolha uma opcao:\n"
                       "1) Adicionar aluno\n"
                       "2) Listar nomes\n"
