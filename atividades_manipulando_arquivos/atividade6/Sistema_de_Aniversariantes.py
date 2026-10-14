@@ -1,41 +1,46 @@
+
 import json
 
-with open("base1.json", 'r') as arquivo:
+with open("base1.json", "r", encoding="utf-8") as arquivo:
     dados1 = json.load(arquivo)
 
-with open("base2.json", 'r') as arquivo:
+with open("base2.json", "r", encoding="utf-8") as arquivo:
     dados2 = json.load(arquivo)
 
-with open("base3.json", 'r') as arquivo:
+with open("base3.json", "r", encoding="utf-8") as arquivo:
     dados3 = json.load(arquivo)
+
 
 lista_aniversariantes = []
 
-for aniversariante in dados1:
-    dicionario_aniversariante = {
-        "nome": aniversariante['nome'],
-        "aniversario": aniversariante['aniversario']
+for funcionario in dados1:
+    aniversariante = {
+        "nome": funcionario["nome"],
+        "aniversario": funcionario["aniversario"]
     }
-    lista_aniversariantes.append(dicionario_aniversariante)
+    lista_aniversariantes.append(aniversariante)
 
-for aniversariante in dados2:
-    dicionario_aniversariante = {
-        "nome": aniversariante['nome'],
-        "aniversario": aniversariante['aniversario']
+for funcionario in dados2:
+    aniversariante = {
+        "nome": funcionario["nome"],
+        "aniversario": funcionario["aniversario"]
     }
-    lista_aniversariantes.append(dicionario_aniversariante)
+    lista_aniversariantes.append(aniversariante)
 
-for aniversariante in dados3:
-    dicionario_aniversariante = {
-        "nome": aniversariante['nome'],
-        "aniversario": aniversariante['aniversario']
+for funcionario in dados3:
+    aniversariante = {
+        "nome": funcionario["nome"],
+        "aniversario": funcionario["aniversario"]
     }
-    lista_aniversariantes.append(dicionario_aniversariante)
+    lista_aniversariantes.append(aniversariante)
 
-with open("aniversariantes.json", 'w') as arquivo:
-    json.dump(lista_aniversariantes, arquivo, indent=4, ensure_ascii=False)
 
-lista_aniversariantes.sort(key=lambda aniversariante: aniversariante['nome'])
+with open("aniversariantes.json", "w", encoding="utf-8") as arquivo:
+    json.dump(
+        lista_aniversariantes,
+        arquivo,
+        indent=4,
+        ensure_ascii=False
+    )
 
-with open("aniversariantes.json", 'w') as arquivo:
-    json.dump(lista_aniversariantes, arquivo, indent=4, ensure_ascii=False)
+print("Lista de aniversariantes consolidada com sucesso!")
