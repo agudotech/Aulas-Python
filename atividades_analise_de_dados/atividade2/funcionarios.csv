@@ -1,33 +1,37 @@
 ﻿id;nome;salario;cargo;tempo_empresa
-3;Carla Mendes;2800.0;Assistente Administrativo;0
-4;Diego Alves;4800.0;Desenvolvedor Python;0
-5;Fernanda Rocha;3500.0;Analista de RH;0
-6;Gabriel Martins;6200.0;Engenheiro de Software;0
-7;Helena Costa;3100.0;Assistente Financeiro;0
-8;Igor Ribeiro;4500.0;Analista de Dados;0
-9;Juliana Ferreira;3900.0;Designer Gráfico;0
-10;Lucas Carvalho;5300.0;Administrador de Redes;0
-11;Mariana Santos;2950.0;Recepcionista;0
-12;Nicolas Oliveira;5700.0;Analista de Segurança;0
-13;Patrícia Gomes;4100.0;Analista de Marketing;0
-14;Rafael Barros;6800.0;Gerente de Projetos;0
-15;Sofia Nascimento;3200.0;Técnica de Suporte;0
-16;Thiago Cardoso;4600.0;Desenvolvedor Front-end;0
-17;Vanessa Lima;3700.0;Analista Contábil;0
-18;William Pereira;5900.0;Administrador de Banco de Dados;0
-19;Yasmin Azevedo;3400.0;Assistente de Compras;0
-20;André Moreira;7200.0;Coordenador de TI;0
-21;Beatriz Monteiro;4300.0;Analista de Qualidade;0
-22;Caio Fernandes;3850.0;Desenvolvedor JavaScript;0
-23;Daniela Freitas;3150.0;Auxiliar de Departamento Pessoal;0
-24;Eduardo Teixeira;5500.0;Analista de Infraestrutura;0
-25;Flávia Ribeiro;4050.0;Product Owner;0
-26;Gustavo Mendes;4950.0;Desenvolvedor Mobile;0
-27;Isabela Duarte;3600.0;Assistente de Logística;0
-28;João Pedro Silva;6400.0;Cientista de Dados;0
-29;Larissa Campos;3300.0;Analista de Atendimento;0
-30;Marcelo Batista;6100.0;Líder Técnico;0
-31;Lucas Mendes;6500.0;Designer UX;12
-32;Mariana Costa;7200.0;Técnico de Redes;8
-33;Pedro Alves;4500.0;Especialista em Suporte;6
-34;Ana Souza;1800.0;Estagiário;3
+7;Helena Costa;3100.0;Assistente Financeiro;1
+8;Igor Ribeiro;4500.0;Analista de Dados;2
+9;Juliana Ferreira;3900.0;Designer Gráfico;3
+10;Lucas Carvalho;5300.0;Administrador de Redes;4
+11;Mariana Santos;2950.0;Recepcionista;5
+12;Nicolas Oliveira;5700.0;Analista de Segurança;6
+13;Patrícia Gomes;4100.0;Analista de Marketing;7
+14;Rafael Barros;6800.0;Gerente de Projetos;8
+15;Sofia Nascimento;3200.0;Técnica de Suporte;9
+16;Thiago Cardoso;4600.0;Desenvolvedor Front-end;10
+17;Vanessa Lima;3700.0;Analista Contábil;11
+18;William Pereira;5900.0;Administrador de Banco de Dados;12
+19;Yasmin Azevedo;3400.0;Assistente de Compras;13
+20;André Moreira;7200.0;Coordenador de TI;14
+21;Beatriz Monteiro;4300.0;Analista de Qualidade;15
+22;Caio Fernandes;3850.0;Desenvolvedor JavaScript;16
+23;Daniela Freitas;3150.0;Auxiliar de Departamento Pessoal;17
+24;Eduardo Teixeira;5500.0;Analista de Infraestrutura;18
+25;Flávia Ribeiro;4050.0;Product Owner;19
+26;Gustavo Mendes;4950.0;Desenvolvedor Mobile;20
+27;Isabela Duarte;3600.0;Assistente de Logística;21
+28;João Pedro Silva;6400.0;Cientista de Dados;22
+29;Larissa Campos;3300.0;Analista de Atendimento;23
+30;Marcelo Batista;6100.0;Líder Técnico;24
+31;Lucas Mendes;6500.0;Designer UX;25
+32;Mariana Costa;7200.0;Técnico de Redes;26
+33;Pedro Alves;4500.0;Especialista em Suporte;27
+34;Ana Souza;1800.0;Estagiário;28
+31;Lucas Martins;7200.0;Arquiteto de Software;29
+32;Mariana Costa;5800.0;Especialista em UX;30
+33;Pedro Henrique;8500.0;Engenheiro de Dados;31
+34;Julia Santos;1500.0;Estagiário;32
+31;Lucas Martins;7200.0;Arquiteto de Software;33
+32;Mariana Costa;5800.0;Especialista em UX;34
+33;Pedro Henrique;8500.0;Engenheiro de Dados;35
+34;Julia Santos;1500.0;Estagiário;3

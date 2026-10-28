@@ -1,55 +1,99 @@
-
 import pandas as pd
 
-# 1. Ler o arquivo enviado pelo professor
-df = pd.read_excel("dados_despadronizados.xlsx")
-
-# Garantir que as colunas de texto possam ser tratadas com .str
-df["cpf"] = df["cpf"].astype("string")
-df["numero"] = df["numero"].astype("string")
-df["salario"] = df["salario"].astype("string")
-
-# 2. Formatar o CPF: remover pontos, traços e outros caracteres
-df["cpf_formatado"] = df["cpf"].str.replace(r"\D", "", regex=True)
-
-# 3. Validar o CPF: deve possuir exatamente 11 dígitos
-df["cpf_valido"] = df["cpf_formatado"].str.fullmatch(r"\d{11}", na=False)
-
-# 4. Formatar o número de telefone: manter somente os dígitos
-df["numero_formatado"] = df["numero"].str.replace(r"\D", "", regex=True)
-
-# 5. Validar o telefone: deve possuir de 10 a 13 dígitos
-df["numero_valido"] = df["numero_formatado"].str.fullmatch(
-    r"\d{10,13}", na=False
+df = pd.read_csv(
+    "dados_despadronizados.csv",
+    dtype=str,
+    encoding="utf-8-sig"
 )
 
-# 6. Formatar os salários
-def formatar_salario(salario):
+print("\n========== DADOS ORIGINAIS ==========")
+print(df.to_string(index=False))
+
+df["cpf"] = df["cpf"].str.replace(r"\D", "", regex=True)
+
+def formatar_cpf(cpf):
+    if len(cpf) == 11:
+        return f"{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:]}"
+    return cpf
+
+def validar_cpf(cpf):
+    if len(cpf) != 11:
+        return False
+
+    if cpf == cpf[0] * 11:
+        return False
+
+    numeros = [int(digito) for digito in cpf]
+
+    soma = sum(numeros[i] * (10 - i) for i in range(9))
+    digito1 = (soma * 10) % 11
+    if digito1 == 10:
+        digito1 = 0
+
+    if digito1 != numeros[9]:
+        return False
+
+    soma = sum(numeros[i] * (11 - i) for i in range(10))
+    digito2 = (soma * 10) % 11
+    if digito2 == 10:
+        digito2 = 0
+
+    return digito2 == numeros[10]
+
+df["cpf_formatado"] = df["cpf"].apply(formatar_cpf)
+df["cpf_valido"] = df["cpf"].apply(validar_cpf)
+
+df["numero"] = df["numero"].str.replace(r"\D", "", regex=True)
+
+def limpar_numero(numero):
+    if len(numero) in (12, 13) and numero.startswith("55"):
+        return numero[2:]
+    return numero
+
+df["numero"] = df["numero"].apply(limpar_numero)
+
+def formatar_numero(numero):
+    if len(numero) == 11:
+        return f"({numero[:2]}) {numero[2:7]}-{numero[7:]}"
+    elif len(numero) == 10:
+        return f"({numero[:2]}) {numero[2:6]}-{numero[6:]}"
+    return numero
+
+def validar_numero(numero):
+    return len(numero) in (10, 11)
+
+
+df["numero_formatado"] = df["numero"].apply(formatar_numero)
+df["numero_valido"] = df["numero"].apply(validar_numero)
+
+def converter_salario(salario):
     salario = salario.strip()
 
-    # Remover símbolos de moeda e espaços
-    salario = pd.Series([salario]).str.replace(
-        r"[^\d,.\-]", "", regex=True
-    ).iloc[0]
+    salario = salario.replace("R$", "").strip()
 
-    # Se houver vírgula, considerar a vírgula como separador decimal
     if "," in salario:
         salario = salario.replace(".", "")
         salario = salario.replace(",", ".")
 
-    return salario
+    return float(salario)
 
+df["salario"] = df["salario"].apply(converter_salario)
 
-salarios = df["salario"].apply(formatar_salario)
+def formatar_salario(salario):
+    valor = f"{salario:,.2f}"
+    valor = valor.replace(",", "X")
+    valor = valor.replace(".", ",")
+    valor = valor.replace("X", ".")
+    return f"R$ {valor}"
 
-df["salario_formatado"] = pd.to_numeric(
-    salarios, errors="coerce"
+df["salario_formatado"] = df["salario"].apply(formatar_salario)
+
+df["salario_anual"] = df["salario"] * 12
+
+df["salario_anual_formatado"] = df["salario_anual"].apply(
+    formatar_salario
 )
 
-# 7. Criar uma coluna com o salário anual
-df["salario_anual"] = df["salario_formatado"] * 12
-
-# 8. Selecionar as colunas solicitadas pelo professor
 colunas = [
     "nome",
     "cpf",
@@ -60,28 +104,29 @@ colunas = [
     "numero_valido",
     "salario",
     "salario_formatado",
-    "salario_anual"
+    "salario_anual",
+    "salario_anual_formatado"
 ]
 
-df_final = df[colunas]
+df = df[colunas]
 
-# 9. Exibir os dados tratados
-print("\n--- DADOS PADRONIZADOS ---\n")
-print(df_final.to_string(index=False))
+print("\n========== DADOS PADRONIZADOS ==========")
+print(df.to_string(index=False))
 
-print("\n--- RESUMO DAS VALIDAÇÕES ---")
-print("CPFs válidos:", df["cpf_valido"].sum())
-print("CPFs inválidos:", (~df["cpf_valido"]).sum())
-print("Telefones válidos:", df["numero_valido"].sum())
-print("Telefones inválidos:", (~df["numero_valido"]).sum())
+print("\n========== TIPOS DE DADOS ==========")
+print(df.dtypes)
 
-# 10. Salvar o resultado em CSV
-df_final.to_csv(
+print("\n========== RESUMO DAS VALIDAÇÕES ==========")
+print(f"Total de funcionários: {len(df)}")
+print(f"CPFs válidos: {df['cpf_valido'].sum()}")
+print(f"CPFs inválidos: {(~df['cpf_valido']).sum()}")
+print(f"Números válidos: {df['numero_valido'].sum()}")
+print(f"Números inválidos: {(~df['numero_valido']).sum()}")
+
+df.to_csv(
     "dados_padronizados.csv",
-    index=False,
     sep=";",
+    index=False,
     encoding="utf-8-sig"
 )
-
 print("\nArquivo dados_padronizados.csv salvo com sucesso!")
-
