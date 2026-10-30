@@ -1,0 +1,7 @@
+===== RECIBO DE COMPRA =====
+Cliente: oi
+
+Produtos:
+lo - R$ 45.00
+
+TOTAL: R$ 45.00
